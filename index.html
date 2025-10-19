@@ -1,108 +1,194 @@
-<!DOCTYPE html css>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <title>Chayan's Portfolio</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #ffecd2, #fcb69f);
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-
-    h1 {
-      margin-top: 20px;
-      font-size: 45px;
-      color: #ff0066;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    h2 {
-      font-size: 22px;
-      font-weight: normal;
-      margin-bottom: 20px;
-    }
-
-    hr {
-      width: 60%;
-      border: none;
-      border-top: 2px solid #ff0066;
-      margin: 30px auto;
-    }
-
-    h3 a {
-      text-decoration: none;
-      color: #222;
-      font-size: 22px;
-      transition: 0.3s;
-    }
-
-    h3 a:hover {
-      color: #ff0066;
-      text-decoration: underline;
-    }
-
-    .project {
-      margin: 30px auto;
-      padding: 20px;
-      background: white;
-      width: 60%;
-      border-radius: 12px;
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .project img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 10px;
-      margin-top: 15px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    a.nav-link {
-      display: inline-block;
-      margin: 15px;
-      padding: 10px 20px;
-      background: #ff0066;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    a.nav-link:hover {
-      background: #e6005c;
-      transform: scale(1.05);
-    }
-  </style>
-</head>
-
-<body>
-  <h1>🌐 Chayan Khatua's Portfolio</h1>
-  <h2>💻 I'm a Web Developer</h2>
-  <hr />
-
-  <div class="project">
-    <h3><a href="./public/movie-ranking.html"target="_main">[Click here]🎬 Movie Ranking Project</a></h3>
-    <img src="./assets/images/movie ranking project.png" alt="movie ranking project preview" />
-  </div>
-
-  <div class="project">
-    <label for="102">
-   <h3><a href="./public/birthday-invite.html" target="_main" >[Click Here]🎉 Birthday Invite Project</a></h3>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chayan Khatua - Portfolio</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧑‍💻</text></svg>">
     
-     <img src="./assets/images/brithday.jpeg" alt="birthday invite project preview" id="102"/>
-    </label>
-  </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="b.css">
+    <link rel="stylesheet" href="./d.js">
+</head>
+<body class="leading-relaxed antialiased">
 
-  <hr />
-  <a class="nav-link" href="./public/about.html"target="_main">About Me</a>
-  <a class="nav-link" href="./public/contact.html"target="_main">Contact Me</a>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="lg:flex lg:justify-between lg:gap-10">
+        <header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/3 lg:flex-col lg:justify-between px-6 py-12 md:px-12 lg:px-20 lg:py-20 content-box lg:rounded-r-xl">
+            <div>
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-white">Chayan Khatua's Portfolio</h1>
+                <h2 class="text-xl sm:text-2xl font-bold text-white mt-3">B.Tech in CSE (AI & ML)</h2>
+                <h3 class="text-lg sm:text-xl font-medium text-white/80 mt-2">Lovely Professional University</h3>
+                <p class="mt-4 max-w-xs text-lg text-white">
+                    I build intelligent systems and creative solutions for the web.
+                </p>
+                <nav class="hidden lg:block mt-16" aria-label="In-page jump links">
+                    <ul class="w-max">
+                        <li><a class="group flex items-center py-3 nav-item active" href="#about"><span class="nav-line mr-4"></span><span class="nav-text text-xs font-bold uppercase tracking-widest">About</span></a></li>
+                        <li><a class="group flex items-center py-3 nav-item" href="#skills"><span class="nav-line mr-4"></span><span class="nav-text text-xs font-bold uppercase tracking-widest">Skills</span></a></li>
+                        <li><a class="group flex items-center py-3 nav-item" href="#projects"><span class="nav-line mr-4"></span><span class="nav-text text-xs font-bold uppercase tracking-widest">Projects</span></a></li>
+                        <li><a class="group flex items-center py-3 nav-item" href="#achievements"><span class="nav-line mr-4"></span><span class="nav-text text-xs font-bold uppercase tracking-widest">Achievements</span></a></li>
+                        <li><a class="group flex items-center py-3 nav-item" href="#contact"><span class="nav-line mr-4"></span><span class="nav-text text-xs font-bold uppercase tracking-widest">Contact</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mt-8 flex items-center space-x-6">
+                <a href="https://github.com/chayan2006" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors social-icon glowing-github"><span class="sr-only">GitHub</span><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                <a href="https://www.linkedin.com/in/chayan-khatua-8880851bb" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors social-icon"><span class="sr-only">LinkedIn</span><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+            </div>
+        </header>
+
+        <main class="pt-12 lg:w-2/3 lg:py-20 px-6 md:px-12 lg:px-20">
+            <section id="about" class="mb-24 scroll-mt-20 fade-in-section">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
+                    <div class="md:col-span-3 text-white space-y-5 text-xl">
+                        <p>I’m a B.Tech student in Computer Science (AI & ML), passionate about building intelligent systems and solving real-world problems through technology. My key interests include Web Development, AI Automation, Agentic AI, Machine Learning, and Data Analytics.</p>
+                        <p>I love exploring how AI can automate workflows, enhance decision-making, and create next-generation digital experiences. Currently, I’m learning and building projects that combine these fields, aiming to become an AI Engineer who bridges innovation and impact.</p>
+                        <p>I’m always open to collaborating on projects, internships, and ideas that push the limits of what’s possible.</p>
+                    </div>
+                    <div class="md:col-span-2 flex justify-center items-start"><div class="w-64 h-64 relative group"><div class="absolute inset-0 bg-accent rounded-lg transform rotate-6 group-hover:rotate-3 transition-transform duration-300"></div><img src="https://media.licdn.com/dms/image/v2/D4E03AQHE4abfyn0Z_A/profile-displayphoto-crop_800_800/B4EZluRZzNGcAI-/0/1758491682293?e=1762387200&v=beta&t=szVAleiuCjcNZ2UTyW6fVzhdO9G9zV3iEg1_wmxyMG0" alt="Chayan Khatua" class="relative w-full h-full rounded-lg object-cover z-10 group-hover:grayscale transition-all duration-300"></div></div>
+                </div>
+            </section>
+            
+            <section id="skills" class="mb-24 scroll-mt-20 fade-in-section">
+                <h2 class="text-3xl font-bold text-white mb-8 pulsing-title">My Skills</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <div class="skill-card p-4 rounded-lg flex flex-col items-center justify-center text-center"><svg class="w-12 h-12 mb-2 text-accent" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.25 7.42c.3-.23.5-.56.5-.92 0-.6-.54-1.08-1.2-1.08h-2.13c-.35 0-.68.12-.95.33l-3.32 2.58-3.3-2.58c-.27-.2-.6-.33-.95-.33H8.28c-.66 0-1.2.48-1.2 1.08 0 .36.2.69.5.92l3.43 2.5-3.43 2.5c-.3.23-.5.56-.5.92 0 .6.54 1.08 1.2 1.08h2.13c.35 0 .68-.12.95-.33l3.32-2.58 3.3 2.58c.27.2.6.33.95.33h2.13c.66 0 1.2-.48 1.2-1.08 0-.36-.2-.69-.5-.92l-3.43-2.5 3.43-2.5zM4 18.25c0 .97.78 1.75 1.75 1.75h12.5c.97 0 1.75-.78 1.75-1.75v-3.5H4v3.5z"/></svg><span class="font-semibold text-white">Python</span></div>
+                    <div class="skill-card p-4 rounded-lg flex flex-col items-center justify-center text-center"><svg class="w-12 h-12 mb-2 text-accent" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1.5-12h3v2.25h-3zm0 4.5h3V17h-3z"/></svg><span class="font-semibold text-white">React.js</span></div>
+                    <div class="skill-card p-4 rounded-lg flex flex-col items-center justify-center text-center"><svg class="w-12 h-12 mb-2 text-accent" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9 2v2H7v2h2v2h2V6h2V4h-2V2H9zm6 8v-2h-2v2h-2v2h2v2h2v-2h2v-2h-2zM4 20h16v-6H4v6zm2-4h12v2H6v-2z"/></svg><span class="font-semibold text-white">TensorFlow</span></div>
+                    <div class="skill-card p-4 rounded-lg flex flex-col items-center justify-center text-center"><svg class="w-12 h-12 mb-2 text-accent" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg><span class="font-semibold text-white">Scikit-learn</span></div>
+                    <div class="skill-card p-4 rounded-lg flex flex-col items-center justify-center text-center"><svg class="w-12 h-12 mb-2 text-accent" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M14.59 13.41L12 11.83l-2.59 1.58L10 10.59 7.41 9l2.59-.58L12 6l1.41 2.41L16.59 9 14 10.59l.59 2.82zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span class="font-semibold text-white">JavaScript</span></div>
+                    <div class="skill-card p-4 rounded-lg flex flex-col items-center justify-center text-center"><svg class="w-12 h-12 mb-2 text-accent" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM9 17H7v-4h2v4zm4-10h-2V5h2v2zm4 10h-2v-4h2v4z"/></svg><span class="font-semibold text-white">HTML & CSS</span></div>
+                    <div class="skill-card p-4 rounded-lg flex flex-col items-center justify-center text-center"><svg class="w-12 h-12 mb-2 text-accent" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V9h2v3zm4-2h-2V9h2v3zm0 4h-2v2h2v-2z"/></svg><span class="font-semibold text-white">Node.js</span></div>
+                    <div class="skill-card p-4 rounded-lg flex flex-col items-center justify-center text-center"><svg class="w-12 h-12 mb-2 text-accent" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5z"/></svg><span class="font-semibold text-white">MongoDB</span></div>
+                </div>
+            </section>
+
+            <section id="projects" class="mb-24 scroll-mt-20 fade-in-section">
+                <h2 class="text-3xl font-bold text-white mb-8 pulsing-title">Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="project-card rounded-xl p-6 flex flex-col justify-between shadow-lg">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-white mb-1 group pulsing-link">
+                                    <a href="https://chayan2006.github.io/triage-bot/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">AI Health Triage Bot <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up-right inline-block h-4 w-4 ml-1 mb-1 transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 17"></polyline></svg></a>
+                                </h3>
+                                <a href="https://github.com/chayan2006/triage-bot" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors glowing-github" aria-label="GitHub Repository"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                            </div>
+                            <p class="text-xs text-accent/80 font-medium tracking-wide mb-2">Click title for live demo</p>
+                            <p class="text-white text-base">A comprehensive web app for preliminary medical triage using the Gemini API. Features include multi-language voice-to-text, an emergency AI assistant, and integration with Google Maps to find nearby hospitals.</p>
+                        </div>
+                        <div class="mt-4 flex flex-wrap text-sm text-accent">
+                            <span class="mr-3 mb-2">Gemini API</span><span class="mr-3 mb-2">Python</span><span class="mr-3 mb-2">FastAPI</span><span class="mr-3 mb-2">Three.js</span>
+                        </div>
+                    </div>
+                    <div class="project-card rounded-xl p-6 flex flex-col justify-between shadow-lg">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-white mb-1 group pulsing-link">
+                                    <a href="https://chayan2006.github.io/Sentiment-analysis/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">Sentiment Analysis Dashboard <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up-right inline-block h-4 w-4 ml-1 mb-1 transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                                </h3>
+                                <a href="https://github.com/chayan2006/Sentiment-analysis" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors glowing-github" aria-label="GitHub Repository"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                            </div>
+                            <p class="text-xs text-accent/80 font-medium tracking-wide mb-2">Click title for live demo</p>
+                            <p class="text-white text-base"><b>Problem:</b> Organizations struggle to manually analyze thousands of public comments. <br><b>Solution:</b> This tool ingests comment data and uses an AI bot to generate summaries, sentiment graphs (positive, negative, neutral), and actionable insights.</p>
+                        </div>
+                        <div class="mt-4 flex flex-wrap text-sm text-accent">
+                            <span class="mr-3 mb-2">Python</span><span class="mr-3 mb-2">NLTK</span><span class="mr-3 mb-2">Plotly</span><span class="mr-3 mb-2">React</span>
+                        </div>
+                    </div>
+                    <div class="project-card rounded-xl p-6 flex flex-col justify-between shadow-lg">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-white mb-1 group pulsing-link">
+                                    <a href="https://chayan2006.github.io/movie--recommendationAPI/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">Movie Recommendation Engine <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up-right inline-block h-4 w-4 ml-1 mb-1 transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                                </h3>
+                                <a href="https://github.com/chayan2006/movie--recommendationAPI" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors glowing-github" aria-label="GitHub Repository"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                            </div>
+                            <p class="text-xs text-accent/80 font-medium tracking-wide mb-2">Click title for live demo</p>
+                            <p class="text-white text-base"><b>Problem:</b> Most movie sites lack intuitive genre filters and trailer previews. <br><b>My Role:</b> I developed the front-end to provide users with easy genre selection and an integrated "Watch Trailer" feature to improve the user experience.</p>
+                        </div>
+                        <div class="mt-4 flex flex-wrap text-sm text-accent">
+                            <span class="mr-3 mb-2">Python</span><span class="mr-3 mb-2">Scikit-learn</span><span class="mr-3 mb-2">Pandas</span><span class="mr-3 mb-2">Streamlit</span>
+                        </div>
+                    </div>
+                    <div class="project-card rounded-xl p-6 flex flex-col justify-between shadow-lg">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-white mb-2">Counter Hub - Life Dashboard</h3>
+                                <a href="https://github.com/chayan2006/counter-hub" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors glowing-github" aria-label="GitHub Repository"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                            </div>
+                            <p class="text-white text-base">A dashboard to manage finances, health, and productivity with a personal AI bot for recommendations.</p>
+                        </div>
+                        <div class="mt-4 flex flex-wrap text-sm text-accent">
+                            <span class="mr-3 mb-2">React</span><span class="mr-3 mb-2">Node.js</span><span class="mr-3 mb-2">MongoDB</span><span class="mr-3 mb-2">Chart.js</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="achievements" class="mb-24 scroll-mt-20 fade-in-section">
+                <h2 class="text-3xl font-bold text-white mb-8 pulsing-title">Achievements</h2>
+                <div class="space-y-8">
+                    <div class="project-card glowing-card rounded-xl p-6 flex flex-col md:flex-row gap-6 shadow-lg">
+                        <div class="md:w-1/3 flex-shrink-0">
+                            <img src="https://media.licdn.com/dms/image/v2/D4E22AQFntl8X5koRGA/feedshare-shrink_2048_1536/B4EZne.TqJKgA0-/0/1760382502729?e=1762387200&v=beta&t=uFXAxR8F0xHIMUZC4UJn3PScy-C-uIIbeCuZyaGsHkU" alt="Hackathon Winner Photo" class="rounded-lg object-cover w-full h-full">
+                        </div>
+                        <div class="md:w-2/3">
+                            <h3 class="text-xl font-bold text-white mb-2 pulsing-title">1st Place Winner - College Hackathon</h3>
+                            <p class="text-white text-base mb-4">Awarded first prize for developing the Movie Recommendation Engine in a competitive college-level hackathon, demonstrating rapid problem-solving and development skills under pressure.</p>
+                            <a href="https://media.licdn.com/dms/image/v2/D4E22AQHYBG8IQzl_zw/feedshare-shrink_2048_1536/B4EZne.TocHgA0-/0/1760382514215?e=1762387200&v=beta&t=BwMds5CB9xGeSJ5QRDH3bPhs8qgE3yjEldfAZyeG3bE" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent text-[#0a192f] font-bold py-2 px-4 rounded-lg hover:bg-opacity-80 transition-colors">
+                                View Certificate
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-card glowing-card rounded-xl p-6 flex shadow-lg">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 pulsing-title">Google Gemini Certified</h3>
+                            <p class="text-white text-base mb-4">Successfully cleared the Google Gemini Certification for University Students with a score of 92%, validating proficiency in next-generation AI models.</p>
+                            <a href="https://edu.google.accredible.com/0edcba22-4fb5-4572-9848-3ac667cb4b61#acc.oqZ4wMfK" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent text-[#0a192f] font-bold py-2 px-4 rounded-lg hover:bg-opacity-80 transition-colors">
+                                View Certificate
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-card glowing-card rounded-xl p-6 flex shadow-lg">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 pulsing-title">Hackathon Participant - GeeksforGeeks</h3>
+                            <p class="text-white text-base mb-4">Participated in a competitive hackathon organized by GeeksforGeeks, where I developed the initial version of the AI Health Triage Bot.</p>
+                            <a href="https://media.licdn.com/dms/image/v2/D4E22AQF5P15RH-S5Ig/feedshare-shrink_2048_1536/B4EZnIygrmGcAw-/0/1760010318715?e=1762387200&v=beta&t=d1zqxp10P7Ir3gX7GDCXNweAt6V_022ObKPFP8Zboc4" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent text-[#0a192f] font-bold py-2 px-4 rounded-lg hover:bg-opacity-80 transition-colors">
+                                View Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="contact" class="mb-24 scroll-mt-20 fade-in-section">
+                <h2 class="text-3xl font-bold text-white mb-4 pulsing-title">Get In Touch</h2>
+                <p class="text-white text-xl max-w-xl mb-8">
+                    My inbox is always open. Whether you have a question, a project proposal, or just want to say hello, I'll do my best to get back to you!
+                </p>
+                <a href="https://www.linkedin.com/in/chayan-khatua-8880851bb" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent text-[#0a192f] font-bold py-4 px-8 rounded-lg hover:bg-opacity-80 transition-colors text-lg">
+                    Say Hello on LinkedIn
+                </a>
+            </section>
+
+            <footer class="text-center text-sm text-white mt-16 pb-8">
+                <p>Designed & Built by Chayan Khatua, inspired by modern portfolio designs.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="d.js"></script>
 </body>
-
 </html>

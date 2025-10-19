@@ -59,6 +59,7 @@ document.querySelectorAll('.fade-in-section').forEach(section => {
     scrollObserver.observe(section);
 });
 
+
 // Three.js Background Animation
 if (typeof THREE !== 'undefined') {
     const scene = new THREE.Scene();

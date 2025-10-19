@@ -4,7 +4,7 @@ This is my personal portfolio website, designed and built to showcase my skills 
 
 This is a fully responsive static site featuring a clean, dark-mode UI, advanced animations, and a clear overview of my projects and achievements.
 
-**View the live site here:** [**https://chayan2006.github.io/**](https://chayan2006.github.io/) 
+**View the live site here:** https://chayan2006.github.io/Protfolio/
 *(Make sure to replace this link with your correct GitHub Pages URL)*
 
 ---

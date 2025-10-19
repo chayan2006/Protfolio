@@ -4,6 +4,8 @@ body {
     background-color: #0a192f;
     color: #ffffff;
     cursor: none; /* Hide default cursor */
+    margin: 0; /* Ensures no default margin */
+    overflow-x: hidden; /* FIX: Prevents horizontal scrolling */
 }
 .text-accent {
     color: #64ffda;

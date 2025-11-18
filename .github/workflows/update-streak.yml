@@ -1,3 +1,75 @@
 .github/
    workflows/
       update-streak.yml
+name: Update Streak Image
+
+on:
+  schedule:
+    # daily at 04:30 UTC (change if you want)
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  fetch-streak:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Create assets dir
+        run: mkdir -p assets
+
+      - name: Try primary streak provider
+        id: primary
+        run: |
+          PRIMARY="https://github-readme-streak-stats.herokuapp.com/?user=chayan2006&theme=tokyonight"
+          echo "Attempting primary: $PRIMARY"
+          if curl -fsSL "$PRIMARY" -o assets/streak.png; then
+            echo "used=primary" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "used=none" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+      - name: Try fallback streak provider
+        if: steps.primary.outputs.used == 'none'
+        id: fallback
+        run: |
+          FALLBACK="https://streak-stats.demolab.com/?user=chayan2006&theme=tokyonight"
+          echo "Attempting fallback: $FALLBACK"
+          if curl -fsSL "$FALLBACK" -o assets/streak.png; then
+            echo "used=fallback" >> $GITHUB_OUTPUT
+          else
+            echo "used=none" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create placeholder if both failed
+        if: steps.primary.outputs.used == 'none' && steps.fallback.outputs.used == 'none'
+        run: |
+          echo "Creating placeholder image"
+          # create simple 720x120 PNG placeholder using ImageMagick if available
+          if command -v convert >/dev/null 2>&1; then
+            convert -size 720x120 xc:'#0b0f12' -fill '#00FFFF' -gravity center -pointsize 20 -annotate 0 "Streak image unavailable" assets/streak.png
+          else
+            # fallback: create a very small transparent png (base64 decoded)
+            echo "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=" | base64 -d > assets/streak.png
+          fi
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/streak.png || true
+          if git diff --cached --quiet; then
+            echo "No changes to push"
+          else
+            git commit -m "chore: update local streak image [skip ci]" || true
+            git push origin HEAD:main || true
+          fi
